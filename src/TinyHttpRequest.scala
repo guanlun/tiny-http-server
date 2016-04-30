@@ -22,10 +22,6 @@ class TinyHttpRequest(inputArray: Array[String]) {
       val segments = line.split(": ")
       headers += segments(0) -> segments(1)
     })
-
-    headers.foreach((pair) => {
-      println(pair._1 + ": " + pair._2)
-    })
   }
 
   override def toString = s"TinyHttpRequest: $method"

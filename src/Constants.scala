@@ -7,4 +7,6 @@ object Constants {
     404 -> "Not Found",
     501 -> "Not Implemented"
   )
+
+  val HTTP_HEADER_IF_MODIFIED_SINCE: String = "If-Modified-Since"
 }
