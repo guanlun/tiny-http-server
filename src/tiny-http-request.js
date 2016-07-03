@@ -6,7 +6,6 @@ export class TinyHttpRequest {
         const initialRequestLine = requestBody[0];
         const initialLineSegs = initialRequestLine.split(' ');
 
-        console.log(initialLineSegs);
         this.method = initialLineSegs[0];
         this.path = ROOT_PATH + initialLineSegs[1];
         this.headers = {};

@@ -14,6 +14,8 @@ net.createServer((socket) => {
             const resMessage = response.getResponseMessage();
             socket.write(resMessage);
 
+            console.log(resMessage);
+
             socket.end();
         });
     });

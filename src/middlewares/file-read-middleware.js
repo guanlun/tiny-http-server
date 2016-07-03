@@ -6,10 +6,10 @@ export class FileReadMiddleware extends Middleware {
     process(req, res, next, done) {
         const path = req.path;
 
-        fsp.readFile(path, 'utf-8')
+        fsp.readFile(path)
             .then((data) => {
                 res.status(200);
-                res.body(data);
+                res.setBody(data);
 
                 next();
             })

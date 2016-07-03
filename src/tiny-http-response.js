@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export class TinyHttpResponse {
     constructor() {
         this.headers = {};
@@ -9,21 +7,32 @@ export class TinyHttpResponse {
         this.statusCode = code;
     }
 
-    body(data) {
-        this.body = data;
-    }
-
     addHeader(key, value) {
         this.headers[key] = value;
     }
 
+    getBody() {
+        return this._body;
+    }
+
+    setBody(data) {
+        this._body = data;
+
+        this.addHeader('Content-Length', data.length);
+    }
+
     getResponseMessage() {
-        const statusText = 'OK';
+        const statusText = '';
 
-        const headerLines = _.mapKeys(this.headers, (val, key) => {
-            return `${key}:${val}`;
-        });
+        const headerLines = [];
 
-        return `HTTP/1.1 ${this.statusCode} ${statusText}\n\n ${this.body}`;
+        for (let key in this.headers) {
+            const val = this.headers[key];
+            headerLines.push(`${key}: ${val}`);
+        }
+
+        const headerText = headerLines.join('\n');
+
+        return `HTTP/1.1 ${this.statusCode} ${statusText}\n${headerText}\n\n${this._body}`;
     }
 }
