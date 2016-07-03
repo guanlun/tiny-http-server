@@ -3,6 +3,7 @@ import {TinyHttpResponse} from './tiny-http-response';
 
 import {HttpMethodMiddleware} from './middlewares/http-method-middleware';
 import {FileReadMiddleware} from './middlewares/file-read-middleware';
+import {MimeTypeMiddleware} from './middlewares/mime-type-middleware';
 import {EncodingMiddleware} from './middlewares/encoding-middleware';
 import {CacheControlMiddleware} from './middlewares/cache-control-middleware';
 
@@ -14,6 +15,7 @@ export class MiddlewareManager {
         this._middlewares = [
             new HttpMethodMiddleware(),
             new FileReadMiddleware(),
+            new MimeTypeMiddleware(),
             // new EncodingMiddleware(),
             new CacheControlMiddleware(),
         ];

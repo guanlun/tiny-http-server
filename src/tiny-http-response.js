@@ -17,11 +17,12 @@ export class TinyHttpResponse {
 
     setBody(data) {
         this._body = data;
+        this._bodyLength = data.length;
 
-        this.addHeader('Content-Length', data.length);
+        this.addHeader('Content-Length', this._bodyLength);
     }
 
-    getResponseMessage() {
+    getHeaderText() {
         const statusText = '';
 
         const headerLines = [];
@@ -31,8 +32,17 @@ export class TinyHttpResponse {
             headerLines.push(`${key}: ${val}`);
         }
 
-        const headerText = headerLines.join('\n');
+        return `HTTP/1.1 ${this.statusCode} ${statusText}\n${headerLines.join('\n')}\n\n`;
+    }
 
-        return `HTTP/1.1 ${this.statusCode} ${statusText}\n${headerText}\n\n${this._body}`;
+    getResponseContent() {
+        const text = this.getHeaderText();
+
+        const buffer = new Buffer(text.length, 'ascii');
+        buffer.write(text);
+
+        const responseBuffer = Buffer.concat([buffer, this._body]);
+
+        return responseBuffer;
     }
 }

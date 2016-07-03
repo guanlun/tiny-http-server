@@ -11,10 +11,8 @@ net.createServer((socket) => {
         const middlewareManger = new MiddlewareManager(data);
 
         middlewareManger.process((response) => {
-            const resMessage = response.getResponseMessage();
-            socket.write(resMessage);
-
-            console.log(resMessage);
+            const resContent = response.getResponseContent();
+            socket.write(resContent);
 
             socket.end();
         });
