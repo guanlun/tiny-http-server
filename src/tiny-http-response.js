@@ -38,8 +38,7 @@ export class TinyHttpResponse {
     getResponseContent() {
         const text = this.getHeaderText();
 
-        const buffer = new Buffer(text.length, 'ascii');
-        buffer.write(text);
+        const buffer = Buffer.from(text);
 
         const responseBuffer = Buffer.concat([buffer, this._body]);
 

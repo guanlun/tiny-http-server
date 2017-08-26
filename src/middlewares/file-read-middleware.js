@@ -1,12 +1,12 @@
-import fsp from 'fs-promise';
+import { fs } from 'mz';
 
-import {Middleware} from './middleware';
+import { Middleware } from './middleware';
 
 export class FileReadMiddleware extends Middleware {
     process(req, res, next, done) {
         const path = req.path;
 
-        fsp.readFile(path)
+        fs.readFile(path)
             .then((data) => {
                 res.status(200);
                 res.setBody(data);
