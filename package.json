@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
+  "type": "module",
   "scripts": {
     "start": "babel-node --presets es2015 ./src/app.js",
     "watch": "babel-watch --presets es2015 ./src/app.js"
@@ -10,7 +11,7 @@
   "dependencies": {
     "babel-cli": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
-    "babel-watch": "^2.0.2",
+    "babel-watch": "^7.0.0",
     "compression": "^1.6.2",
     "gzip-js": "^0.3.2",
     "lodash": "^4.13.1",
